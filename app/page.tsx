@@ -4,7 +4,7 @@ import { useState } from 'react';
 import SiteFooter from './site-footer';
 import ServiceAreaJourney from './service-area-journey';
 import ContactForm, { useContactInquiry } from './contact-form';
-import InquiryPopup from './inquiry-popup';
+import ContactChat from './contact-chat';
 import { SiteMotion, ElectricalCurrent, HeroEnergy } from './site-motion';
 import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Zap, House, Building2, Mail, Star } from 'lucide-react';
 
@@ -137,7 +137,7 @@ export default function Home() {
     </main>
 
     <SiteFooter />
-    <InquiryPopup><ContactForm inquiry={inquiry} titleId="popup-contact-title" /></InquiryPopup>
+    <ContactChat inquiry={inquiry} />
   </>;
 }
 
