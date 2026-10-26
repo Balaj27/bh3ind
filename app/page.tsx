@@ -2,10 +2,11 @@
 
 import { useState } from 'react';
 import SiteFooter from './site-footer';
+import ServiceAreaJourney from './service-area-journey';
 import { SiteMotion, ElectricalCurrent, HeroEnergy } from './site-motion';
-import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Check, Zap, House, Building2, Mail, Navigation, Send, Star } from 'lucide-react';
+import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Zap, House, Building2, Mail, Send, Star } from 'lucide-react';
 
-const cities = ['Mesquite', 'Garland', 'Sunnyvale', 'Seagoville', 'Dallas', 'Balch Springs', 'Forney', 'Terrell'];
+
 const reviews = [
   { name: 'Sarah M.', city: 'Mesquite, TX', service: 'Residential service', initials: 'SM', text: 'The team explained everything clearly, showed up on time, and left our home spotless. The whole process was easy from start to finish.' },
   { name: 'David R.', city: 'Garland, TX', service: 'Commercial service', initials: 'DR', text: 'Professional, thorough, and easy to communicate with. They helped us get our electrical issue sorted out with minimal disruption to our business.' },
@@ -59,7 +60,7 @@ function FooterLogoColors() {
 
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [selectedCity, setSelectedCity] = useState('Mesquite');
+
   const [service, setService] = useState('Residential');
   const [formStatus, setFormStatus] = useState('');
   const [messageLength, setMessageLength] = useState(0);
@@ -89,7 +90,7 @@ export default function Home() {
 
     <main>
       <section className="hero" id="home">
-        <img className="hero-photo" src="/images/hero-cinematic.webp" alt="Cinematic illustration of an electrician inspecting switchgear in a copper-lit electrical room" fetchPriority="high" />
+        <img className="hero-photo" src="/images/hero-field-engineer.webp" alt="Field engineer testing cabling and equipment inside a network cabinet" fetchPriority="high" />
         <div className="hero-shade" />
         <HeroEnergy />
         <div className="container hero-content"><div className="eyebrow light"><span /> YOUR LOCAL ELECTRICAL EXPERTS</div>
@@ -97,7 +98,6 @@ export default function Home() {
           <p>Reliable electrical work backed by experience,<br className="desktop-break" /> honesty and dependable service.</p>
           <div className="hero-buttons"><a className="button button-red" href="#contact">Contact Us <ArrowUpRight size={20} /></a><a className="hero-phone" href="tel:+19727611973"><span className="phone-ring"><Phone size={20} /></span><span><small>LET’S GET TO WORK</small>972-761-1973</span></a></div>
         </div>
-        <div className="hero-note"><span className="note-icon"><Zap size={21} fill="currentColor" /></span><div>Good work. Clear communication.<br /><strong>Power you can count on.</strong></div></div>
         <CompanyLogos />
       </section>
 
@@ -110,7 +110,7 @@ export default function Home() {
       </div></section>
 
       <section className="about section" id="about"><div className="container about-grid">
-        <div className="about-visual"><div className="about-photo-frame"><img className="about-main" src="/images/about-electrician.webp" alt="Illustrative image of a professional electrician inspecting a residential breaker panel" loading="lazy" /><img className="about-detail" src="/images/about-lighting.webp" alt="Illustrative image of an electrician installing a recessed ceiling light" loading="lazy" /></div><span className="photo-caption">LOCAL PEOPLE. DEPENDABLE WORK.</span></div>
+        <div className="about-visual"><div className="about-photo-frame"><img className="about-main" src="/images/about-detail-user.webp" alt="Close-up of electrical wiring and control panel repairs" loading="lazy" /><img className="about-detail" src="/images/about-panel-user.webp" alt="Electrician working inside an electrical distribution panel" loading="lazy" /></div><span className="photo-caption">LOCAL PEOPLE. DEPENDABLE WORK.</span></div>
         <div className="about-copy"><div className="eyebrow"><span /> BUILT ON TRUST. WIRED FOR QUALITY.</div><h2>YOUR RELIABLE<br /><em>ELECTRICAL COMPANY.</em><br />COMMITTED TO<br />QUALITY WORK.</h2>
           <p>At BH3 Industries, we provide licensed electrical services for homeowners, businesses, multifamily properties, and construction projects throughout North Texas. Whether you need help with a small repair, a larger electrical upgrade, or a project that needs to meet code the first time, our team is ready to help.</p>
           <p>We handle a wide range of electrical services, including electrical repairs, troubleshooting, panel upgrades, breaker replacements, lighting installation, EV charger installation, surge protection, smoke detectors, commercial electrical work, multifamily service, and construction wiring. No matter the size of the job, we focus on safe work, clear communication, and dependable results.</p>
@@ -139,29 +139,7 @@ export default function Home() {
         <div className="google-reviews-disclosure">Sample reviews and dates for design preview. Live Google reviews are not connected.</div>
       </div></section>
 
-      <section className="areas section" id="areas"><div className="container areas-grid"><div className="areas-copy"><div className="eyebrow"><span /> LOCAL SERVICE. NORTH TEXAS PRIDE.</div><h2>YOUR COMMUNITY.<br />OUR COMMITMENT.<br /><em>AREAS WE SERVE.</em></h2><p>Dependable electrical service, right where you need it. Proudly serving homes and businesses across North Texas.</p><div className="city-grid">{cities.map(city => <button className={selectedCity === city ? 'city active' : 'city'} key={city} onClick={() => setSelectedCity(city)} aria-pressed={selectedCity === city}><MapPin size={16} />{city}, TX{selectedCity === city ? <Check size={15} /> : <ArrowUpRight size={15} />}</button>)}</div></div>
-        <div className="area-map">
-          <svg className="map-art" viewBox="0 0 600 560" role="img" aria-label="Illustrated North Texas service area">
-            <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#d9dcd5" strokeWidth="0.7" /></pattern></defs>
-            <rect width="600" height="560" fill="#eceee7" /><rect width="600" height="560" fill="url(#grid)" />
-            <path d="M-20 80Q110 170 210 100T600 20L620 150Q450 200 460 320T550 600L480 600Q360 420 390 320T230 200Q80 240-20 170Z" fill="#e0e6d8" />
-            <path d="M100-20Q140 80 100 170T150 360T100 580M-20 350Q150 290 260 350T630 240M-20 180L620 440M300-20L340 580" fill="none" stroke="#fff" strokeWidth="13" />
-            <path d="M100-20Q140 80 100 170T150 360T100 580M-20 350Q150 290 260 350T630 240M-20 180L620 440M300-20L340 580" fill="none" stroke="#d6d8cf" strokeWidth="2" />
-            <path d="M-20 490Q150 470 250 260T620 120" fill="none" stroke="#fff" strokeWidth="19" />
-            <path d="M-20 490Q150 470 250 260T620 120" fill="none" stroke="#f0c7a2" strokeWidth="4" />
-            <path d="M390-10Q450 90 425 145T470 255L520 235Q455 160 480 140T450-10Z" fill="#cbdcd9" />
-            <circle cx="320" cy="285" r="150" fill="#f3442d" fillOpacity=".045" stroke="#f3442d" strokeOpacity=".28" strokeDasharray="5 7" />
-            <circle cx="320" cy="285" r="95" fill="#f3442d" fillOpacity=".035" stroke="#f3442d" strokeOpacity=".14" />
-            {[{n:'Dallas',x:128,y:310},{n:'Garland',x:280,y:142},{n:'Mesquite',x:320,y:285},{n:'Sunnyvale',x:395,y:235},{n:'Forney',x:466,y:325},{n:'Terrell',x:543,y:223},{n:'Balch Springs',x:267,y:405},{n:'Seagoville',x:412,y:450}].map(p => <g key={p.n}>
-              {selectedCity === p.n && <circle className="map-location-ripple" cx={p.x} cy={p.y} r="18" fill="none" stroke="#f3412b" strokeWidth="1.5" />}<circle cx={p.x} cy={p.y} r={selectedCity === p.n ? 13 : 5} fill={selectedCity === p.n ? '#f3442d' : '#8b9388'} stroke="white" strokeWidth="3" />
-              <text x={p.x} y={p.y-19} textAnchor="middle" fill={selectedCity===p.n?'#ef3c27':'#6f766d'} fontSize="12" fontFamily="Arial" fontWeight={selectedCity===p.n?'bold':'normal'}>{p.n}</text>
-            </g>)}
-          </svg>
-          <div className="map-top"><span><i className="status-dot" /> OUR SERVICE AREA</span><Navigation size={17} /></div>
-          <div className="map-card"><span className="map-pin"><MapPin size={24} /></span><div><small>POWERING YOUR NEIGHBORHOOD</small><strong>{selectedCity}, Texas</strong><span>Residential · Commercial · Emergency</span></div><a href={`https://www.google.com/maps/search/${encodeURIComponent(selectedCity + ', TX')}`} target="_blank" rel="noreferrer" aria-label={`View ${selectedCity} on Google Maps`}><ArrowUpRight size={21} /></a></div>
-          <small className="map-caption">Illustrated service area · not to scale</small>
-        </div>
-      </div></section>
+      <ServiceAreaJourney />
 
       <section className="cta"><ElectricalCurrent variant="cta" /><div className="container cta-inner"><div className="cta-icon"><Zap size={36} /></div><div><span>LET’S GET YOUR NEXT PROJECT STARTED</span><h2>GOOD WORK STARTS WITH A CALL.</h2></div><CallButton light>Call 972-761-1973</CallButton></div></section>
     </main>
