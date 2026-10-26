@@ -627,6 +627,37 @@ body{font-size:16px}
 @media(max-width:800px){.about-visual{height:auto}.about-photo-frame{height:auto;aspect-ratio:4/5}.section-heading>.text-link{display:inline-flex;margin-top:20px}.journey-heading p{font-size:16px}}
 @media(max-width:520px){.service-body p,.about-copy p,.contact-copy p,.neighbors .google-review-text{font-size:16px;line-height:1.8}.hero-buttons{flex-wrap:wrap;gap:16px 20px}.hero-buttons>.button{font-size:14px}.hero-phone{font-size:16px}.hero .eyebrow,.eyebrow{font-size:11px}.section-actions{gap:18px;margin-top:24px}.section-actions .button{font-size:14px}.section-actions .text-link{font-size:14px}.section-actions:not(.reviews-actions)>.button{width:100%}.contact-form label,.service-selector button{font-size:14px}.service-selector{gap:6px}.service-selector button{padding:10px 7px}.contact-call small{font-size:11px}.google-review-author strong{font-size:16px}.google-review-author>span,.google-review-footer,.google-reviews-disclosure{font-size:12px}.google-review-service{display:none}.google-reviews-toolbar>a{font-size:12px}.journey-invitation,.journey-toolbar>span,.journey-toolbar button{font-size:12px}.journey-toolbar>span{max-width:190px}.journey-arrival>div>span{font-size:11px}.journey-arrival p{font-size:14px}.journey-arrival>a{font-size:14px}.footer-rewired .footer-main{gap:34px 20px}.footer-rewired .footer-main h4{font-size:15px}.footer-rewired .footer-main>div>a,.footer-rewired .footer-brand p{font-size:14px}.footer-rewired .footer-main .footer-book{font-size:13px;padding:10px 12px;gap:10px}.footer-rewired .footer-license{font-size:11px}.footer-rewired .hours-card-label,.footer-rewired .hours-label{font-size:10px;line-height:1.7}.footer-rewired .footer-hours .hours-note,.footer-rewired .footer-hours>.footer-emergency{font-size:12px}.footer-communities>span{font-size:11px}.footer-communities a{font-size:13px}.footer-rewired .footer-bottom{font-size:11px}}
 
+/* Larger service cards and a more prominent second collage photograph. */
+.services>.container{max-width:1360px}
+.services-grid{gap:26px}
+.service-image{height:255px}
+.service-body{padding:30px}
+.service-title h3{font-size:34px}
+.service-body p{margin-top:20px;margin-bottom:28px}
+.service-action{padding-top:20px;min-height:54px}
+.about-visual{height:560px}
+.about-photo-frame .about-detail{width:68%;height:64%;max-height:none}
+@media(max-width:1100px){.services-grid{gap:20px}.service-image{height:225px}.service-body{padding:24px}.service-title h3{font-size:30px}}
+@media(max-width:800px){.services-grid{gap:16px}.service-image{height:195px}.service-body{padding:20px}.service-title h3{font-size:28px}.about-visual{height:auto}.about-photo-frame .about-detail{width:68%;height:62%}}
+@media(max-width:600px){.services-grid{grid-template-columns:1fr;gap:27px}.service-image{height:260px}.service-body{padding:27px}.service-title h3{font-size:34px}.about-photo-frame .about-detail{width:68%;height:62%;border-width:6px}}
+
+/* Form controls: understated selection tiles and one clear primary action. */
+.service-selector-label{display:block;font-size:14px;font-weight:600;color:#4b514b;margin-bottom:11px}
+.contact-form .service-selector{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;padding:0;margin-bottom:26px;background:none;border-radius:0}
+.contact-form .service-selector button{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;min-width:0;min-height:80px;padding:13px 6px;border:1px solid #d9ded4;border-radius:7px;background:#ffffffb3;color:#737b70;font-size:13px;font-weight:500;line-height:1.3;box-shadow:none;transition:background .18s,border-color .18s,color .18s}
+.contact-form .service-selector button svg{color:#8a9384;flex-shrink:0}
+.contact-form .service-selector button:hover{background:#fff;border-color:#b5beb0;color:var(--ink)}
+.contact-form .service-selector button.selected{border-color:#ef806b;background:#fff5f0;color:#303930;font-weight:600;box-shadow:inset 0 0 0 .5px #ef806b}
+.contact-form .service-selector button.selected svg{color:var(--red)}
+.contact-form .service-selector button:focus-visible,.contact-form .submit:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+.contact-form .submit{min-height:54px;padding:15px 21px;margin-top:13px;border:1px solid transparent;border-radius:7px;text-transform:none;letter-spacing:0;font-size:15px;font-weight:600;box-shadow:none;transition:background .18s}
+.contact-form .submit:after{display:none}
+.contact-form .submit:hover{transform:none;box-shadow:none;background:#db3824}
+.contact-form .submit svg{stroke-width:1.7;transition:none}
+.contact-form .submit:hover svg:last-child{transform:none}
+@media(max-width:520px){.contact-form .service-selector{gap:8px}.contact-form .service-selector button{font-size:12px;min-height:78px;padding:12px 4px}.contact-form .submit{min-height:54px;font-size:15px}}
+@media(prefers-reduced-motion:reduce){.contact-form .service-selector button,.contact-form .submit{transition:none}}
+
 /* Keep touch scrolling light: retain motion without large repainting effects. */
 @media(max-width:800px),(pointer:coarse){
   .header{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fafaf6}
@@ -642,3 +673,16 @@ body{font-size:16px}
   .hero h1>span:not(.heading-dot){animation:none;background:none;-webkit-text-fill-color:var(--red);color:var(--red)}
   .journey-illustration g[filter]{filter:none}
 }
+
+/* The delayed inquiry uses the same form as the contact section. */
+.inquiry-popup{width:min(580px,calc(100vw - 32px));max-height:calc(100vh - 32px);max-height:calc(100dvh - 32px);padding:0;border:1px solid #e0e3da;border-radius:12px;background:var(--cream);color:var(--ink);box-shadow:0 24px 80px #0003;overflow-y:auto;overscroll-behavior:contain;scrollbar-width:thin}
+.inquiry-popup::backdrop{background:#101b1cc2}
+.inquiry-popup-header{position:sticky;top:0;z-index:2;display:flex;align-items:center;justify-content:space-between;padding:16px 26px;background:var(--cream);border-bottom:1px solid var(--line)}
+.inquiry-popup-header img{width:99px;height:auto}
+.inquiry-popup-header button{display:grid;place-items:center;width:38px;height:38px;border:1px solid #dce0d6;border-radius:50%;background:transparent;color:#5a6357}
+.inquiry-popup-header button:hover{background:#e9ece2;color:var(--ink)}
+.inquiry-popup .contact-form{padding:25px 28px 28px;border:0;border-radius:0;box-shadow:none;transition:none}
+.inquiry-popup .contact-form:focus-within{box-shadow:none;border:0}
+.inquiry-popup .form-heading h3{font-size:36px}
+.inquiry-popup .form-heading p{font-size:15px}
+@media(max-width:520px){.inquiry-popup{width:calc(100vw - 24px);max-height:calc(100dvh - 24px);border-radius:10px}.inquiry-popup-header{padding:12px 20px}.inquiry-popup .contact-form{padding:22px 20px}.inquiry-popup .form-heading h3{font-size:32px}}

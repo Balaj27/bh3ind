@@ -3,8 +3,10 @@
 import { useState } from 'react';
 import SiteFooter from './site-footer';
 import ServiceAreaJourney from './service-area-journey';
+import ContactForm, { useContactInquiry } from './contact-form';
+import InquiryPopup from './inquiry-popup';
 import { SiteMotion, ElectricalCurrent, HeroEnergy } from './site-motion';
-import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Zap, House, Building2, Mail, Send, Star } from 'lucide-react';
+import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Zap, House, Building2, Mail, Star } from 'lucide-react';
 
 
 const reviews = [
@@ -61,17 +63,8 @@ function FooterLogoColors() {
 export default function Home() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const [service, setService] = useState('Residential');
-  const [formStatus, setFormStatus] = useState('');
-  const [messageLength, setMessageLength] = useState(0);
-
-  function submitInquiry(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const body = `Name: ${data.get('name')}\nPhone: ${data.get('phone')}\nEmail: ${data.get('email')}\nAddress: ${data.get('address')}\nService: ${service}\n\n${data.get('message')}`;
-    window.location.href = `mailto:info@bh3ind.com?subject=${encodeURIComponent(`Electrical service inquiry — ${service}`)}&body=${encodeURIComponent(body)}`;
-    setFormStatus('Your email draft is ready in your email app. Send it to complete your request, or call 972-761-1973.');
-  }
+  const inquiry = useContactInquiry();
+  const { setService } = inquiry;
 
   return <>
     <SiteMotion />
@@ -122,7 +115,7 @@ export default function Home() {
         <p>Tell us what you need. We’ll explain your options and pricing before work begins.</p>
         <ul className="contact-benefits"><li><ShieldCheck size={20} /> Licensed electricians</li><li><Zap size={20} /> Clear, upfront pricing</li><li><Phone size={20} /> 24/7 emergency support</li></ul>
         <div className="contact-call"><span className="phone-ring"><Phone size={23} /></span><div><small>GIVE US A CALL. WE’RE HERE TO HELP.</small><a href="tel:+19727611973">972-761-1973 <ArrowUpRight size={24} /></a></div></div>
-      </div><form className="contact-form" onSubmit={submitInquiry}><div className="form-heading"><span className="eyebrow">LET’S GET STARTED</span><h3>How can we help?</h3><p>Send a service request by email.</p></div><div className="service-selector" aria-label="Select service type">{services.map(s => <button key={s.title} type="button" onClick={() => setService(s.title)} aria-pressed={service === s.title} className={service === s.title ? 'selected' : ''}>{s.title}</button>)}</div><div className="form-grid"><label>Name<input name="name" placeholder="Your full name" autoComplete="name" required /></label><label>Phone<input name="phone" placeholder="(972) 000-0000" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" placeholder="you@example.com" type="email" autoComplete="email" required /></label><label>Address<input name="address" placeholder="Your property address" autoComplete="street-address" required /></label></div><label>How can we help?<textarea name="message" placeholder="Tell us what you have in mind..." maxLength={600} onChange={e => setMessageLength(e.target.value.length)} required /></label><div className="form-counter">{messageLength}/600 characters</div><button className="button button-red submit" type="submit">Request Service <Send size={17} /></button><small className="form-footnote"><ShieldCheck size={13} /> Opens your email app to complete your request.</small>{formStatus && <p className="form-status" role="status">{formStatus}</p>}</form></div></section>
+      </div><ContactForm inquiry={inquiry} /></div></section>
 
       <section className="neighbors section"><div className="container neighbors-inner">
         <div className="eyebrow"><span /> YOUR NEIGHBORHOOD ELECTRICIANS</div>
@@ -144,6 +137,7 @@ export default function Home() {
     </main>
 
     <SiteFooter />
+    <InquiryPopup><ContactForm inquiry={inquiry} titleId="popup-contact-title" /></InquiryPopup>
   </>;
 }
 
