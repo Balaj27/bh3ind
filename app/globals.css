@@ -626,3 +626,19 @@ body{font-size:16px}
 .footer-rewired .footer-bottom,.footer-rewired .footer-bottom>span:nth-child(3){font-size:11px;line-height:1.8}
 @media(max-width:800px){.about-visual{height:auto}.about-photo-frame{height:auto;aspect-ratio:4/5}.section-heading>.text-link{display:inline-flex;margin-top:20px}.journey-heading p{font-size:16px}}
 @media(max-width:520px){.service-body p,.about-copy p,.contact-copy p,.neighbors .google-review-text{font-size:16px;line-height:1.8}.hero-buttons{flex-wrap:wrap;gap:16px 20px}.hero-buttons>.button{font-size:14px}.hero-phone{font-size:16px}.hero .eyebrow,.eyebrow{font-size:11px}.section-actions{gap:18px;margin-top:24px}.section-actions .button{font-size:14px}.section-actions .text-link{font-size:14px}.section-actions:not(.reviews-actions)>.button{width:100%}.contact-form label,.service-selector button{font-size:14px}.service-selector{gap:6px}.service-selector button{padding:10px 7px}.contact-call small{font-size:11px}.google-review-author strong{font-size:16px}.google-review-author>span,.google-review-footer,.google-reviews-disclosure{font-size:12px}.google-review-service{display:none}.google-reviews-toolbar>a{font-size:12px}.journey-invitation,.journey-toolbar>span,.journey-toolbar button{font-size:12px}.journey-toolbar>span{max-width:190px}.journey-arrival>div>span{font-size:11px}.journey-arrival p{font-size:14px}.journey-arrival>a{font-size:14px}.footer-rewired .footer-main{gap:34px 20px}.footer-rewired .footer-main h4{font-size:15px}.footer-rewired .footer-main>div>a,.footer-rewired .footer-brand p{font-size:14px}.footer-rewired .footer-main .footer-book{font-size:13px;padding:10px 12px;gap:10px}.footer-rewired .footer-license{font-size:11px}.footer-rewired .hours-card-label,.footer-rewired .hours-label{font-size:10px;line-height:1.7}.footer-rewired .footer-hours .hours-note,.footer-rewired .footer-hours>.footer-emergency{font-size:12px}.footer-communities>span{font-size:11px}.footer-communities a{font-size:13px}.footer-rewired .footer-bottom{font-size:11px}}
+
+/* Keep touch scrolling light: retain motion without large repainting effects. */
+@media(max-width:800px),(pointer:coarse){
+  .header{backdrop-filter:none;-webkit-backdrop-filter:none;background:#fafaf6}
+  .company-strip{backdrop-filter:none;-webkit-backdrop-filter:none;background:#14201be6}
+  .scroll-current{display:none}
+  .reveal-awaiting{transform:none}
+  .current-stream,.electrical-current-cta .current-stream{filter:none}
+  .electrical-current{contain:paint}
+  .hero-energy-focus{mix-blend-mode:normal;transform:none;transition:none}
+  .hero-energy-bloom,.hero-energy-aura{animation:none;opacity:.45}
+  .hero-energy-particle{box-shadow:none}
+  .hero-energy-particle:nth-child(n+7){display:none}
+  .hero h1>span:not(.heading-dot){animation:none;background:none;-webkit-text-fill-color:var(--red);color:var(--red)}
+  .journey-illustration g[filter]{filter:none}
+}

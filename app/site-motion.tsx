@@ -5,8 +5,10 @@ import { useEffect, useRef } from 'react';
 const revealSelector = '.section-heading, .service-card, .about-visual, .about-copy, .contact-copy, .contact-form, .neighbors h2, .google-reviews-toolbar, .google-review-card, .areas-copy, .area-map, .cta-inner, .footer-main';
 
 export function SiteMotion() {
+  const progress = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const compactMotion = window.matchMedia('(max-width: 800px), (pointer: coarse)');
     let dispose = () => {};
 
     function setup() {
@@ -21,11 +23,11 @@ export function SiteMotion() {
           const element = entry.target as HTMLElement;
           if (element.classList.contains('reveal-awaiting')) {
             const siblings = Array.from(element.parentElement?.children || []);
-            const delay = element.matches('.service-card, .google-review-card') ? (siblings.indexOf(element) % 3) * 90 : 0;
+            const delay = !compactMotion.matches && element.matches('.service-card, .google-review-card') ? (siblings.indexOf(element) % 3) * 90 : 0;
             const animation = element.animate([
-              { opacity: 0, transform: 'translateY(28px)' },
+              { opacity: 0, transform: compactMotion.matches ? 'none' : 'translateY(28px)' },
               { opacity: 1, transform: 'translateY(0)' },
-            ], { duration: 720, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' });
+            ], { duration: compactMotion.matches ? 400 : 720, delay, easing: 'cubic-bezier(.22,1,.36,1)', fill: 'both' });
             animations.add(animation);
             animation.onfinish = () => {
               element.classList.remove('reveal-awaiting');
@@ -52,7 +54,7 @@ export function SiteMotion() {
       let frame = 0;
       const updateProgress = () => {
         const range = document.documentElement.scrollHeight - window.innerHeight;
-        document.documentElement.style.setProperty('--page-progress', String(range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0));
+        if (progress.current) progress.current.style.transform = `scaleX(${range > 0 ? Math.min(1, Math.max(0, window.scrollY / range)) : 0})`;
         frame = 0;
       };
       const onScroll = () => { if (!frame) frame = requestAnimationFrame(updateProgress); };
@@ -60,9 +62,11 @@ export function SiteMotion() {
         const bounds = element.getBoundingClientRect();
         element.classList.toggle('current-in-view', !document.hidden && bounds.bottom > -80 && bounds.top < window.innerHeight + 80);
       });
-      updateProgress();
-      window.addEventListener('scroll', onScroll, { passive: true });
-      window.addEventListener('resize', onScroll, { passive: true });
+      if (!compactMotion.matches) {
+        updateProgress();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', onScroll, { passive: true });
+      }
       document.addEventListener('visibilitychange', onVisibility);
 
       dispose = () => {
@@ -75,16 +79,17 @@ export function SiteMotion() {
         window.removeEventListener('scroll', onScroll);
         window.removeEventListener('resize', onScroll);
         document.removeEventListener('visibilitychange', onVisibility);
-        document.documentElement.style.removeProperty('--page-progress');
+        if (progress.current) progress.current.style.removeProperty('transform');
       };
     }
 
     setup();
     reducedMotion.addEventListener('change', setup);
-    return () => { dispose(); reducedMotion.removeEventListener('change', setup); };
+    compactMotion.addEventListener('change', setup);
+    return () => { dispose(); reducedMotion.removeEventListener('change', setup); compactMotion.removeEventListener('change', setup); };
   }, []);
 
-  return <div className="scroll-current" aria-hidden="true"><span /></div>;
+  return <div className="scroll-current" aria-hidden="true"><span ref={progress} /></div>;
 }
 
 const energyParticles = Array.from({ length: 20 }, (_, index) => ({

@@ -24,6 +24,7 @@ export default function ServiceAreaJourney() {
   const body = useRef<SVGGElement>(null);
   const logo = useRef<SVGGElement>(null);
   const distance = useRef<number | null>(null);
+  const geometry = useRef<{ mobile: boolean; length: number; points: { x: number; y: number }[]; destinations: number[] } | null>(null);
   const [mobile, setMobile] = useState(false);
   const [reduced, setReduced] = useState(true);
   const [visible, setVisible] = useState(false);
@@ -52,23 +53,42 @@ export default function ServiceAreaJourney() {
   useEffect(() => {
     const path = road.current;
     if (!path) return;
-    const length = path.getTotalLength();
-    const [x, y] = stops[destination];
-    // Match each destination to its actual position on the curved road.
-    let target = 0, nearest = Infinity;
-    for (let i = 0; i <= 1600; i++) {
-      const d = length * i / 1600;
-      const point = path.getPointAtLength(d);
-      const delta = (point.x - x) ** 2 + (point.y - y) ** 2;
-      if (delta < nearest) { nearest = delta; target = d; }
+    // Read SVG geometry once per layout, never during a scroll or animation frame.
+    if (!geometry.current || geometry.current.mobile !== mobile) {
+      const length = path.getTotalLength();
+      const points = Array.from({ length: 801 }, (_, index) => {
+        const point = path.getPointAtLength(length * index / 800);
+        return { x: point.x, y: point.y };
+      });
+      const destinations = stops.map(([x, y]) => {
+        let closest = 0, nearest = Infinity;
+        points.forEach((point, index) => {
+          const delta = (point.x - x) ** 2 + (point.y - y) ** 2;
+          if (delta < nearest) { nearest = delta; closest = index; }
+        });
+        return length * closest / 800;
+      });
+      geometry.current = { mobile, length, points, destinations };
     }
+    const { length, points, destinations } = geometry.current;
+    const target = destinations[destination];
+    const pointAt = (d: number) => {
+      const position = Math.max(0, Math.min(800, d / length * 800));
+      const index = Math.min(799, Math.floor(position));
+      const fraction = position - index;
+      return { x: points[index].x + (points[index + 1].x - points[index].x) * fraction, y: points[index].y + (points[index + 1].y - points[index].y) * fraction };
+    };
+    let lastFacing = 0;
     const paint = (d: number, direction: number) => {
-      const point = path.getPointAtLength(d);
-      const ahead = path.getPointAtLength(Math.max(0, Math.min(length, d + direction * 5)));
+      const point = pointAt(d);
+      const ahead = pointAt(d + direction * 5);
       const facing = ahead.x === point.x ? direction : ahead.x > point.x ? 1 : -1;
       van.current?.setAttribute('transform', `translate(${point.x} ${point.y - 2})`);
-      body.current?.setAttribute('transform', `scale(${facing} 1)`);
-      logo.current?.setAttribute('transform', `translate(${facing === 1 ? -58 : -6} -53)`);
+      if (facing !== lastFacing) {
+        body.current?.setAttribute('transform', `scale(${facing} 1)`);
+        logo.current?.setAttribute('transform', `translate(${facing === 1 ? -58 : -6} -53)`);
+        lastFacing = facing;
+      }
     };
     if (distance.current === null) distance.current = target;
     const start = distance.current;
