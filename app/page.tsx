@@ -1,8 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import ServiceNetwork from './service-network';
-import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Check, Zap, House, Building2, Mail, Send, Star, Quote, Clock3 } from 'lucide-react';
+import SiteFooter from './site-footer';
+import { SiteMotion, ElectricalCurrent, HeroEnergy } from './site-motion';
+import { ArrowUpRight, Phone, MapPin, ShieldCheck, Menu, X, ChevronDown, Check, Zap, House, Building2, Mail, Navigation, Send, Star } from 'lucide-react';
 
 const cities = ['Mesquite', 'Garland', 'Sunnyvale', 'Seagoville', 'Dallas', 'Balch Springs', 'Forney', 'Terrell'];
 const reviews = [
@@ -10,6 +11,15 @@ const reviews = [
   { name: 'David R.', city: 'Garland, TX', service: 'Commercial service', initials: 'DR', text: 'Professional, thorough, and easy to communicate with. They helped us get our electrical issue sorted out with minimal disruption to our business.' },
   { name: 'Michelle T.', city: 'Forney, TX', service: 'Electrical repair', initials: 'MT', text: 'Honest advice, clear pricing, and great attention to detail. We appreciated how they walked us through the work and answered all our questions.' },
 ];
+
+function GoogleMark() {
+  return <svg className="google-mark" viewBox="0 0 24 24" role="img" aria-label="Google">
+    <path fill="#4285F4" d="M22.56 12.25c0-.73-.06-1.42-.19-2.09H12v3.96h5.92a5.06 5.06 0 0 1-2.2 3.32v2.76h3.56c2.08-1.92 3.28-4.75 3.28-7.95Z" />
+    <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.8l-3.56-2.76c-.98.66-2.24 1.06-3.72 1.06-2.87 0-5.3-1.94-6.17-4.54H2.15v2.85A11 11 0 0 0 12 23Z" />
+    <path fill="#FBBC05" d="M5.83 13.96A6.6 6.6 0 0 1 5.48 12c0-.68.12-1.34.35-1.96V7.19H2.15A11 11 0 0 0 1 12c0 1.77.42 3.44 1.15 4.81l3.68-2.85Z" />
+    <path fill="#EA4335" d="M12 5.5c1.62 0 3.06.56 4.21 1.64l3.16-3.16A10.56 10.56 0 0 0 12 1a11 11 0 0 0-9.85 6.19l3.68 2.85C6.7 7.44 9.13 5.5 12 5.5Z" />
+  </svg>;
+}
 
 function CompanyLogos() {
   return <div className="company-strip"><div className="container company-strip-inner">
@@ -63,6 +73,7 @@ export default function Home() {
   }
 
   return <>
+    <SiteMotion />
     <FooterLogoColors />
     <div className="topbar"><div className="container topbar-inner"><span><MapPin size={13} /> Proudly serving North Texas</span><span><i className="status-dot" /> Available 24/7 for electrical emergencies <a href="tel:+19727611973">Let’s talk <ArrowUpRight size={13} /></a></span></div></div>
     <header className="header"><div className="container nav-inner">
@@ -78,8 +89,9 @@ export default function Home() {
 
     <main>
       <section className="hero" id="home">
-        <img className="hero-photo" src="/images/hero.jpg" alt="Contemporary home with architectural detailing and a landscaped pool" fetchPriority="high" />
+        <img className="hero-photo" src="/images/hero-cinematic.webp" alt="Cinematic illustration of an electrician inspecting switchgear in a copper-lit electrical room" fetchPriority="high" />
         <div className="hero-shade" />
+        <HeroEnergy />
         <div className="container hero-content"><div className="eyebrow light"><span /> YOUR LOCAL ELECTRICAL EXPERTS</div>
           <h1>TOP-RATED<br /><span>ELECTRICIANS</span><br />IN NORTH TEXAS<span className="heading-dot">.</span></h1>
           <p>Reliable electrical work backed by experience,<br className="desktop-break" /> honesty and dependable service.</p>
@@ -98,7 +110,7 @@ export default function Home() {
       </div></section>
 
       <section className="about section" id="about"><div className="container about-grid">
-        <div className="about-visual"><img className="about-main" src="/images/electrician.jpg" alt="Electrician working carefully on an electrical control cabinet" loading="lazy" /><img className="about-detail" src="/images/detail.jpg" alt="Tools and craftsmanship for electrical installations" loading="lazy" /><div className="quality-seal"><ShieldCheck size={29} /><strong>QUALITY<br />IN EVERY WIRE</strong><span>BH3 INDUSTRIES</span></div><span className="photo-caption">LOCAL PEOPLE. DEPENDABLE WORK.</span></div>
+        <div className="about-visual"><div className="about-photo-frame"><img className="about-main" src="/images/about-electrician.webp" alt="Illustrative image of a professional electrician inspecting a residential breaker panel" loading="lazy" /><img className="about-detail" src="/images/about-lighting.webp" alt="Illustrative image of an electrician installing a recessed ceiling light" loading="lazy" /></div><span className="photo-caption">LOCAL PEOPLE. DEPENDABLE WORK.</span></div>
         <div className="about-copy"><div className="eyebrow"><span /> BUILT ON TRUST. WIRED FOR QUALITY.</div><h2>YOUR RELIABLE<br /><em>ELECTRICAL COMPANY.</em><br />COMMITTED TO<br />QUALITY WORK.</h2>
           <p>At BH3 Industries, we provide licensed electrical services for homeowners, businesses, multifamily properties, and construction projects throughout North Texas. Whether you need help with a small repair, a larger electrical upgrade, or a project that needs to meet code the first time, our team is ready to help.</p>
           <p>We handle a wide range of electrical services, including electrical repairs, troubleshooting, panel upgrades, breaker replacements, lighting installation, EV charger installation, surge protection, smoke detectors, commercial electrical work, multifamily service, and construction wiring. No matter the size of the job, we focus on safe work, clear communication, and dependable results.</p>
@@ -107,7 +119,7 @@ export default function Home() {
         </div>
       </div></section>
 
-      <section className="contact section" id="contact"><div className="container contact-grid"><div className="contact-copy"><div className="eyebrow light"><span /> THE RIGHT TEAM. THE RIGHT CONNECTION.</div><h2>WHY CHOOSE<br /><em>BH3 INDUSTRIES</em><br />AS YOUR LICENSED<br />ELECTRICIAN?</h2>
+      <section className="contact section" id="contact"><ElectricalCurrent variant="contact" /><div className="container contact-grid"><div className="contact-copy"><div className="eyebrow light"><span /> THE RIGHT TEAM. THE RIGHT CONNECTION.</div><h2>WHY CHOOSE<br /><em>BH3 INDUSTRIES</em><br />AS YOUR LICENSED<br />ELECTRICIAN?</h2>
         <p>BH3 Industries brings hands-on electrical experience, licensed workmanship, and a strong focus on safety to every job. We understand how important your electrical system is to your home, business, or property, so we take every project seriously. Whether we are replacing a panel, troubleshooting an issue, wiring a remodel, or helping with a commercial project, our work is built around doing the job right.</p>
         <p>When you choose BH3 Industries, you get a team that values honest service, clean work, and clear communication. We take the time to understand the issue, walk you through your options, and recommend practical solutions that make sense for your property. Our team works hard to keep the process simple from start to finish, with no confusion, no pressure, and no shortcuts.</p>
         <div className="contact-call"><span className="phone-ring"><Phone size={23} /></span><div><small>GIVE US A CALL. WE’RE HERE TO HELP.</small><a href="tel:+19727611973">972-761-1973 <ArrowUpRight size={24} /></a></div></div>
@@ -117,22 +129,44 @@ export default function Home() {
         <div className="eyebrow"><span /> YOUR NEIGHBORHOOD ELECTRICIANS</div>
         <h2>WHAT YOUR NEIGHBORS<br />ARE <em>SAYING ABOUT US</em></h2>
         <p>Honest service. Clean work. Clear communication.</p>
-        <div className="review-grid">{reviews.map(review => <article className="review-card" key={review.name}>
-          <div className="review-card-top"><div className="review-stars" aria-label="Sample five-star rating">{Array.from({length:5},(_,i)=><Star key={i} size={15} fill="currentColor" strokeWidth={0} />)}</div><Quote size={27} strokeWidth={1.4} /></div>
-          <blockquote>{review.text}</blockquote>
-          <div className="review-person"><span className="review-avatar">{review.initials}</span><div><strong>{review.name}</strong><span>{review.city}</span></div><span className="review-service">{review.service}</span></div>
+        <div className="google-reviews-toolbar"><div className="google-reviews-title"><span className="google-wordmark" aria-label="Google"><span>G</span><span>o</span><span>o</span><span>g</span><span>l</span><span>e</span></span><span>Reviews</span></div><a href="https://www.google.com/maps/search/BH3+Industries+Mesquite+TX" target="_blank" rel="noreferrer">Find us on Google <ArrowUpRight size={17} /></a></div>
+        <div className="review-grid google-review-grid">{reviews.map((review, index) => <article className="google-review-card" key={review.name}>
+          <div className="google-review-header"><span className={`google-review-avatar avatar-${index}`}>{review.initials}</span><div className="google-review-author"><strong>{review.name}</strong><span>{['2 weeks ago', '1 month ago', '2 months ago'][index]}</span></div><GoogleMark /></div>
+          <div className="google-review-rating"><div className="google-review-stars" aria-label="Sample five-star rating">{Array.from({length:5},(_,i)=><Star key={i} size={17} fill="currentColor" strokeWidth={0} />)}</div></div>
+          <p className="google-review-text">{review.text}</p>
+          <div className="google-review-footer"><MapPin size={13} /><span>{review.city}</span><span className="google-review-service">{review.service}</span></div>
         </article>)}</div>
-        <div className="review-bottom"><span className="placeholder-note">Sample reviews for design preview.</span><a className="text-link" href="https://www.google.com/maps/search/BH3+Industries+Mesquite+TX" target="_blank" rel="noreferrer">Find us on Google <ArrowUpRight size={18} /></a></div>
+        <div className="google-reviews-disclosure">Sample reviews and dates for design preview. Live Google reviews are not connected.</div>
       </div></section>
 
       <section className="areas section" id="areas"><div className="container areas-grid"><div className="areas-copy"><div className="eyebrow"><span /> LOCAL SERVICE. NORTH TEXAS PRIDE.</div><h2>YOUR COMMUNITY.<br />OUR COMMITMENT.<br /><em>AREAS WE SERVE.</em></h2><p>Dependable electrical service, right where you need it. Proudly serving homes and businesses across North Texas.</p><div className="city-grid">{cities.map(city => <button className={selectedCity === city ? 'city active' : 'city'} key={city} onClick={() => setSelectedCity(city)} aria-pressed={selectedCity === city}><MapPin size={16} />{city}, TX{selectedCity === city ? <Check size={15} /> : <ArrowUpRight size={15} />}</button>)}</div></div>
-        <ServiceNetwork selectedCity={selectedCity} onSelect={setSelectedCity} />
+        <div className="area-map">
+          <svg className="map-art" viewBox="0 0 600 560" role="img" aria-label="Illustrated North Texas service area">
+            <defs><pattern id="grid" width="48" height="48" patternUnits="userSpaceOnUse"><path d="M 48 0 L 0 0 0 48" fill="none" stroke="#d9dcd5" strokeWidth="0.7" /></pattern></defs>
+            <rect width="600" height="560" fill="#eceee7" /><rect width="600" height="560" fill="url(#grid)" />
+            <path d="M-20 80Q110 170 210 100T600 20L620 150Q450 200 460 320T550 600L480 600Q360 420 390 320T230 200Q80 240-20 170Z" fill="#e0e6d8" />
+            <path d="M100-20Q140 80 100 170T150 360T100 580M-20 350Q150 290 260 350T630 240M-20 180L620 440M300-20L340 580" fill="none" stroke="#fff" strokeWidth="13" />
+            <path d="M100-20Q140 80 100 170T150 360T100 580M-20 350Q150 290 260 350T630 240M-20 180L620 440M300-20L340 580" fill="none" stroke="#d6d8cf" strokeWidth="2" />
+            <path d="M-20 490Q150 470 250 260T620 120" fill="none" stroke="#fff" strokeWidth="19" />
+            <path d="M-20 490Q150 470 250 260T620 120" fill="none" stroke="#f0c7a2" strokeWidth="4" />
+            <path d="M390-10Q450 90 425 145T470 255L520 235Q455 160 480 140T450-10Z" fill="#cbdcd9" />
+            <circle cx="320" cy="285" r="150" fill="#f3442d" fillOpacity=".045" stroke="#f3442d" strokeOpacity=".28" strokeDasharray="5 7" />
+            <circle cx="320" cy="285" r="95" fill="#f3442d" fillOpacity=".035" stroke="#f3442d" strokeOpacity=".14" />
+            {[{n:'Dallas',x:128,y:310},{n:'Garland',x:280,y:142},{n:'Mesquite',x:320,y:285},{n:'Sunnyvale',x:395,y:235},{n:'Forney',x:466,y:325},{n:'Terrell',x:543,y:223},{n:'Balch Springs',x:267,y:405},{n:'Seagoville',x:412,y:450}].map(p => <g key={p.n}>
+              {selectedCity === p.n && <circle className="map-location-ripple" cx={p.x} cy={p.y} r="18" fill="none" stroke="#f3412b" strokeWidth="1.5" />}<circle cx={p.x} cy={p.y} r={selectedCity === p.n ? 13 : 5} fill={selectedCity === p.n ? '#f3442d' : '#8b9388'} stroke="white" strokeWidth="3" />
+              <text x={p.x} y={p.y-19} textAnchor="middle" fill={selectedCity===p.n?'#ef3c27':'#6f766d'} fontSize="12" fontFamily="Arial" fontWeight={selectedCity===p.n?'bold':'normal'}>{p.n}</text>
+            </g>)}
+          </svg>
+          <div className="map-top"><span><i className="status-dot" /> OUR SERVICE AREA</span><Navigation size={17} /></div>
+          <div className="map-card"><span className="map-pin"><MapPin size={24} /></span><div><small>POWERING YOUR NEIGHBORHOOD</small><strong>{selectedCity}, Texas</strong><span>Residential · Commercial · Emergency</span></div><a href={`https://www.google.com/maps/search/${encodeURIComponent(selectedCity + ', TX')}`} target="_blank" rel="noreferrer" aria-label={`View ${selectedCity} on Google Maps`}><ArrowUpRight size={21} /></a></div>
+          <small className="map-caption">Illustrated service area · not to scale</small>
+        </div>
       </div></section>
 
-      <section className="cta"><div className="container cta-inner"><div className="cta-icon"><Zap size={36} /></div><div><span>LET’S GET YOUR NEXT PROJECT STARTED</span><h2>GOOD WORK STARTS WITH A CALL.</h2></div><CallButton light>Call 972-761-1973</CallButton></div></section>
+      <section className="cta"><ElectricalCurrent variant="cta" /><div className="container cta-inner"><div className="cta-icon"><Zap size={36} /></div><div><span>LET’S GET YOUR NEXT PROJECT STARTED</span><h2>GOOD WORK STARTS WITH A CALL.</h2></div><CallButton light>Call 972-761-1973</CallButton></div></section>
     </main>
 
-    <footer className="footer"><div className="container"><div className="footer-main"><div className="footer-brand"><a className="brand" href="#home"><img src="/logo.png" alt="BH3 Industries" width="141" height="45" /><span>INDUSTRIES</span></a><p>Reliable electrical work.<br />People you can count on.</p><span className="footer-license"><ShieldCheck size={15} /> License No. TECL 31767</span></div><div><h4>Contact Information</h4><a href="tel:+19727611973"><Phone size={15} />972-761-1973</a><a href="mailto:info@bh3ind.com"><Mail size={15} />info@bh3ind.com</a><a href="https://www.google.com/maps/search/4111+US-80+Suite+206+Mesquite+TX+75150" target="_blank" rel="noreferrer"><MapPin size={16} /><span>4111 US-80 Suite 206<br />Mesquite, TX 75150</span></a></div><div><h4>Useful Links</h4><a href="#residential">Residential</a><a href="#commercial">Commercial</a><a href="#emergency">Emergency Service</a><a href="#about">About Us</a><a href="#areas">Areas We Serve</a></div><div className="footer-hours"><h4>Hours</h4><div className="hours-status"><span className="hours-icon"><Clock3 size={22} strokeWidth={1.5} /></span><div><span className="hours-label">ALWAYS OPEN</span><strong>24<span>/</span>7</strong></div></div><p className="hours-note">Every day. Around the clock.</p><span className="hours-support"><i className="status-dot" /> Emergency support available</span></div><div className="footer-connect"><h4>Follow us</h4><a href="https://www.google.com/maps/search/BH3+Industries+Mesquite+TX" target="_blank" rel="noreferrer">Find us on Google <ArrowUpRight size={15} /></a><span className="footer-available"><i className="status-dot" /> Available when it matters.</span></div></div><div className="footer-bottom"><span>BH3 Industries © 2026 | All Rights Reserved</span><span className="legal-links"><a href="mailto:info@bh3ind.com?subject=Privacy%20Policy%20request">Privacy Policy</a><span> | </span><a href="mailto:info@bh3ind.com?subject=Terms%20of%20Use%20request">Terms of Use</a></span><span>Powered by Vosa Digital</span><a href="#home">Back to top ↑</a></div></div></footer>
+    <SiteFooter />
   </>;
 }
 
