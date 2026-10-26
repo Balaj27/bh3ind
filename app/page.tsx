@@ -35,9 +35,9 @@ function CompanyLogos() {
   </div></div>;
 }
 const services = [
-  { title: 'Residential', icon: House, image: 'residential.jpg', text: 'Count on us for safe electrical repairs, upgrades, lighting, panel work, and new installations that keep your home powered and protected.', tags: 'Repairs · Lighting · Panel upgrades' },
-  { title: 'Commercial', icon: Building2, image: 'commercial.jpg', text: 'We help offices, retail spaces, restaurants, warehouses, and other businesses with professional electrical service and repairs.', tags: 'Offices · Retail · Construction' },
-  { title: 'Emergency', icon: Zap, image: 'electrician.jpg', text: 'Electrical problems can happen at the worst times. Our team is available 24/7 to help with urgent issues and keep your property safe.', tags: '24/7 support · Urgent repairs' },
+  { title: 'Residential', icon: House, image: 'residential.jpg', text: 'Repairs, lighting, panel upgrades, and installations for a safer home.' },
+  { title: 'Commercial', icon: Building2, image: 'commercial.jpg', text: 'Electrical repairs, upgrades, and wiring for businesses and construction projects.' },
+  { title: 'Emergency', icon: Zap, image: 'electrician.jpg', text: 'Urgent electrical problems? Call our team for help, available 24/7.' },
 ];
 
 function CallButton({ light = false, children = '972-761-1973' }: { light?: boolean; children?: React.ReactNode }) {
@@ -96,34 +96,33 @@ export default function Home() {
         <div className="container hero-content"><div className="eyebrow light"><span /> YOUR LOCAL ELECTRICAL EXPERTS</div>
           <h1>TOP-RATED<br /><span>ELECTRICIANS</span><br />IN NORTH TEXAS<span className="heading-dot">.</span></h1>
           <p>Reliable electrical work backed by experience,<br className="desktop-break" /> honesty and dependable service.</p>
-          <div className="hero-buttons"><a className="button button-red" href="#contact">Contact Us <ArrowUpRight size={20} /></a><a className="hero-phone" href="tel:+19727611973"><span className="phone-ring"><Phone size={20} /></span><span><small>LET’S GET TO WORK</small>972-761-1973</span></a></div>
+          <div className="hero-buttons"><a className="button button-red" href="#contact">Request Service <ArrowUpRight size={20} /></a><a className="hero-phone" href="tel:+19727611973"><span className="phone-ring"><Phone size={20} /></span><span><small>CALL US 24/7</small>972-761-1973</span></a></div>
         </div>
         <CompanyLogos />
       </section>
 
       <section className="services section" id="services"><div className="container">
-        <div className="section-heading"><div><div className="eyebrow"><span /> WHAT WE DO</div><h2>OUR TOP<br /><em>ELECTRICAL SERVICES</em></h2></div><p>From your home to your business,<br />we keep your world powered.</p></div>
+        <div className="section-heading"><div><div className="eyebrow"><span /> WHAT WE DO</div><h2>OUR TOP<br /><em>ELECTRICAL SERVICES</em></h2></div><a className="text-link" href="#contact">Discuss your project <ArrowUpRight size={19} /></a></div>
         <div className="services-grid">{services.map((s, i) => <article className="service-card" id={s.title.toLowerCase()} key={s.title}>
           <a className="service-image" href={s.title === 'Emergency' ? 'tel:+19727611973' : '#contact'} onClick={() => setService(s.title)} aria-label={`Request ${s.title.toLowerCase()} electrical service`}><img src={`/images/${s.image}`} alt={s.title === 'Residential' ? 'Warmly lit residential living room' : s.title === 'Commercial' ? 'Bright modern commercial office' : 'Electrical professional inspecting a control panel'} loading="lazy" /><span className="service-number">0{i + 1}</span>{s.title === 'Emergency' && <span className="availability"><i className="status-dot" /> AVAILABLE 24/7</span>}</a>
-          <div className="service-body"><div className="service-title"><s.icon size={24} strokeWidth={1.5} /><h3>{s.title}</h3><a href={s.title === 'Emergency' ? 'tel:+19727611973' : '#contact'} onClick={() => setService(s.title)} aria-label={`Get ${s.title} service`}><ArrowUpRight size={23} /></a></div><p>{s.text}</p><div className="service-tags">{s.tags}</div></div>
+          <div className="service-body"><div className="service-title"><s.icon size={24} strokeWidth={1.5} /><h3>{s.title}</h3></div><p>{s.text}</p><a className="service-action" href={s.title === 'Emergency' ? 'tel:+19727611973' : '#contact'} onClick={() => setService(s.title)}>{s.title === 'Emergency' ? 'Call for urgent help' : `Book ${s.title.toLowerCase()} service`}<ArrowUpRight size={18} /></a></div>
         </article>)}</div>
       </div></section>
 
       <section className="about section" id="about"><div className="container about-grid">
         <div className="about-visual"><div className="about-photo-frame"><img className="about-main" src="/images/about-detail-user.webp" alt="Close-up of electrical wiring and control panel repairs" loading="lazy" /><img className="about-detail" src="/images/about-panel-user.webp" alt="Electrician working inside an electrical distribution panel" loading="lazy" /></div><span className="photo-caption">LOCAL PEOPLE. DEPENDABLE WORK.</span></div>
-        <div className="about-copy"><div className="eyebrow"><span /> BUILT ON TRUST. WIRED FOR QUALITY.</div><h2>YOUR RELIABLE<br /><em>ELECTRICAL COMPANY.</em><br />COMMITTED TO<br />QUALITY WORK.</h2>
-          <p>At BH3 Industries, we provide licensed electrical services for homeowners, businesses, multifamily properties, and construction projects throughout North Texas. Whether you need help with a small repair, a larger electrical upgrade, or a project that needs to meet code the first time, our team is ready to help.</p>
-          <p>We handle a wide range of electrical services, including electrical repairs, troubleshooting, panel upgrades, breaker replacements, lighting installation, EV charger installation, surge protection, smoke detectors, commercial electrical work, multifamily service, and construction wiring. No matter the size of the job, we focus on safe work, clear communication, and dependable results.</p>
-          <p>Our goal is simple: make electrical service easier and less stressful for our customers. We show up ready to work, explain what needs to be done, and provide clear pricing before the job begins. From emergency service calls to planned upgrades and construction projects, BH3 Industries is here to keep your property powered, protected, and working the way it should.</p>
-          <a className="text-link" href="#contact">Let’s talk about your project <ArrowUpRight size={19} /></a>
+        <div className="about-copy"><div className="eyebrow"><span /> BH3 INDUSTRIES</div><h2>YOUR RELIABLE<br /><em>ELECTRICAL COMPANY.</em></h2>
+          <p>Licensed electrical work for North Texas homes, businesses, and construction projects. From small repairs to major upgrades, we focus on safety and quality.</p>
+          <p>Panels, lighting, EV chargers, surge protection, and wiring—handled with clear pricing and straightforward communication.</p>
+          <div className="section-actions"><a className="button button-red" href="#contact">Request Service <ArrowUpRight size={18} /></a><a className="text-link" href="tel:+19727611973"><Phone size={17} /> Call our team</a></div>
         </div>
       </div></section>
 
-      <section className="contact section" id="contact"><ElectricalCurrent variant="contact" /><div className="container contact-grid"><div className="contact-copy"><div className="eyebrow light"><span /> THE RIGHT TEAM. THE RIGHT CONNECTION.</div><h2>WHY CHOOSE<br /><em>BH3 INDUSTRIES</em><br />AS YOUR LICENSED<br />ELECTRICIAN?</h2>
-        <p>BH3 Industries brings hands-on electrical experience, licensed workmanship, and a strong focus on safety to every job. We understand how important your electrical system is to your home, business, or property, so we take every project seriously. Whether we are replacing a panel, troubleshooting an issue, wiring a remodel, or helping with a commercial project, our work is built around doing the job right.</p>
-        <p>When you choose BH3 Industries, you get a team that values honest service, clean work, and clear communication. We take the time to understand the issue, walk you through your options, and recommend practical solutions that make sense for your property. Our team works hard to keep the process simple from start to finish, with no confusion, no pressure, and no shortcuts.</p>
+      <section className="contact section" id="contact"><ElectricalCurrent variant="contact" /><div className="container contact-grid"><div className="contact-copy"><div className="eyebrow light"><span /> LICENSED. LOCAL. AVAILABLE 24/7.</div><h2>LET’S GET<br /><em>YOUR PROJECT</em><br />STARTED.</h2>
+        <p>Tell us what you need. We’ll explain your options and pricing before work begins.</p>
+        <ul className="contact-benefits"><li><ShieldCheck size={20} /> Licensed electricians</li><li><Zap size={20} /> Clear, upfront pricing</li><li><Phone size={20} /> 24/7 emergency support</li></ul>
         <div className="contact-call"><span className="phone-ring"><Phone size={23} /></span><div><small>GIVE US A CALL. WE’RE HERE TO HELP.</small><a href="tel:+19727611973">972-761-1973 <ArrowUpRight size={24} /></a></div></div>
-      </div><form className="contact-form" onSubmit={submitInquiry}><div className="form-heading"><span className="eyebrow">LET’S GET STARTED</span><h3>How can we help?</h3><p>Tell us a little about your project.</p></div><div className="service-selector" aria-label="Select service type">{services.map(s => <button key={s.title} type="button" onClick={() => setService(s.title)} aria-pressed={service === s.title} className={service === s.title ? 'selected' : ''}>{s.title}</button>)}</div><div className="form-grid"><label>Name<input name="name" placeholder="Your full name" autoComplete="name" required /></label><label>Phone<input name="phone" placeholder="(972) 000-0000" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" placeholder="you@example.com" type="email" autoComplete="email" required /></label><label>Address<input name="address" placeholder="Your property address" autoComplete="street-address" required /></label></div><label>How can we help?<textarea name="message" placeholder="Tell us what you have in mind..." maxLength={600} onChange={e => setMessageLength(e.target.value.length)} required /></label><div className="form-counter">{messageLength} of 600 max characters</div><button className="button button-red submit" type="submit">Submit <Send size={17} /></button><small className="form-footnote"><ShieldCheck size={13} /> Opens your email app to complete your request.</small>{formStatus && <p className="form-status" role="status">{formStatus}</p>}</form></div></section>
+      </div><form className="contact-form" onSubmit={submitInquiry}><div className="form-heading"><span className="eyebrow">LET’S GET STARTED</span><h3>How can we help?</h3><p>Send a service request by email.</p></div><div className="service-selector" aria-label="Select service type">{services.map(s => <button key={s.title} type="button" onClick={() => setService(s.title)} aria-pressed={service === s.title} className={service === s.title ? 'selected' : ''}>{s.title}</button>)}</div><div className="form-grid"><label>Name<input name="name" placeholder="Your full name" autoComplete="name" required /></label><label>Phone<input name="phone" placeholder="(972) 000-0000" type="tel" autoComplete="tel" required /></label><label>Email<input name="email" placeholder="you@example.com" type="email" autoComplete="email" required /></label><label>Address<input name="address" placeholder="Your property address" autoComplete="street-address" required /></label></div><label>How can we help?<textarea name="message" placeholder="Tell us what you have in mind..." maxLength={600} onChange={e => setMessageLength(e.target.value.length)} required /></label><div className="form-counter">{messageLength}/600 characters</div><button className="button button-red submit" type="submit">Request Service <Send size={17} /></button><small className="form-footnote"><ShieldCheck size={13} /> Opens your email app to complete your request.</small>{formStatus && <p className="form-status" role="status">{formStatus}</p>}</form></div></section>
 
       <section className="neighbors section"><div className="container neighbors-inner">
         <div className="eyebrow"><span /> YOUR NEIGHBORHOOD ELECTRICIANS</div>
@@ -136,7 +135,7 @@ export default function Home() {
           <p className="google-review-text">{review.text}</p>
           <div className="google-review-footer"><MapPin size={13} /><span>{review.city}</span><span className="google-review-service">{review.service}</span></div>
         </article>)}</div>
-        <div className="google-reviews-disclosure">Sample reviews and dates for design preview. Live Google reviews are not connected.</div>
+        <div className="google-reviews-disclosure">Sample reviews for design preview. Live Google reviews are not connected.</div><div className="section-actions reviews-actions"><a className="button button-red" href="#contact">Book Your Service <ArrowUpRight size={18} /></a><a className="text-link" href="tel:+19727611973"><Phone size={17} /> Call 972-761-1973</a></div>
       </div></section>
 
       <ServiceAreaJourney />

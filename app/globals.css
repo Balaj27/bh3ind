@@ -543,53 +543,86 @@ body{font-size:16px}
 @media(max-width:800px){.hero-photo{object-position:58% center}}
 @media(max-width:520px){.hero-photo{object-position:62% center}}
 
-/* A local service journey: an original illustrated road, not live tracking. */
+/* Service areas: restrained road illustration with selectable city stops. */
 .service-journey{background:#f7f7f2}
-.journey-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:60px;margin-bottom:40px}
-.journey-heading h2{font-size:clamp(44px,5.5vw,72px);line-height:1.03;margin:22px 0 0}
-.journey-heading>div:last-child{max-width:420px;padding-bottom:4px}
-.journey-heading p{font-size:16px;line-height:1.9;color:#6c736d;margin:0 0 20px}
-.journey-invitation{display:flex;align-items:center;gap:9px;font-size:13px;color:#3c5144}
-.journey-invitation svg{color:var(--red)}
-.journey-card{border:1px solid #dce2d4;background:#eef1e7;border-radius:16px;overflow:hidden;box-shadow:0 15px 45px #263a1e06}
-.journey-toolbar{padding:22px 30px;display:flex;align-items:center;justify-content:space-between;gap:16px;border-bottom:1px solid #dce2d4;background:#f5f6ee}
-.journey-toolbar>span{display:flex;align-items:center;gap:10px;font-size:10px;letter-spacing:1.8px;color:#6b7a64;font-weight:600}
-.journey-toolbar i,.journey-caption i{display:inline-block;width:6px;height:6px;border-radius:50%;background:var(--red);box-shadow:0 0 0 4px #f3412b12;flex-shrink:0}
-.journey-toolbar button{display:flex;align-items:center;gap:8px;padding:10px 15px;border:1px solid #d9dfd0;border-radius:24px;background:#fff;color:#4a5e4b;font-size:12px;white-space:nowrap;transition:background .2s}
-.journey-toolbar button:hover{background:#e5ebdd}.journey-toolbar button:disabled{cursor:default;opacity:.7}
-.journey-scene{position:relative;overflow:hidden;background:radial-gradient(ellipse at 50% 40%,#fbfcf4 0,#edf1e5 80%)}
+.journey-heading{display:flex;justify-content:space-between;align-items:flex-end;gap:60px;margin-bottom:38px}
+.journey-heading h2{font-size:clamp(48px,5.5vw,76px);line-height:1;margin:19px 0 0}
+.journey-heading>div:last-child{max-width:380px;padding-bottom:3px}
+.journey-heading p{font-size:17px;line-height:1.8;color:#676d69;margin:0 0 12px}
+.journey-invitation{font-size:13px;color:#90938b}
+.journey-card{border-top:1px solid #d9dad2;border-bottom:1px solid #d9dad2;background:#f1f0e9;overflow:hidden}
+.journey-toolbar{padding:20px 30px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.journey-toolbar>span{display:flex;align-items:center;gap:8px;font-size:12px;color:#787d74}
+.journey-toolbar>span svg{color:var(--red);flex-shrink:0}
+.journey-toolbar button{display:flex;align-items:center;gap:8px;padding:10px 0 10px 16px;background:transparent;color:#484e49;font-size:12px;white-space:nowrap}
+.journey-toolbar button:hover{color:var(--red)}
+.journey-toolbar button:disabled{cursor:default;opacity:.5}
+.journey-scene{position:relative;overflow:hidden}
 .journey-illustration{display:block;width:100%;height:auto}
-.journey-scene-note{position:absolute;bottom:22px;left:30px;font-size:11px;color:#8a9681;letter-spacing:.2px}
-.journey-stop text{font-family:var(--body);font-size:17px;fill:#53664f;font-weight:600;transition:fill .3s}
-.journey-stop .stop-state{font-size:7px;letter-spacing:2px;fill:#9ca88e;font-weight:400}
-.journey-stop .stop-halo{fill:#e3e9d9;stroke:#c8d3bc;stroke-width:1}
-.journey-stop .stop-dot{fill:#8eaa82}
-.journey-stop.is-active .stop-halo{fill:#fff2e8;stroke:#f3412b;stroke-width:1.5}
-.journey-stop.is-active .stop-dot{fill:var(--red)}
-.journey-stop.is-active text{fill:var(--red)}
+.journey-neighborhood{opacity:.7}
 .journey-stop{cursor:pointer;outline:none}
-.journey-stop .stop-hit-area{fill:transparent;stroke:transparent;stroke-width:2}
-.journey-stop:hover text{fill:var(--red)}
+.journey-stop text{font-family:var(--body);font-size:18px;fill:#535b55;font-weight:500;pointer-events:none;transition:fill .2s}
+.journey-stop .stop-halo{fill:#f1f0e9;stroke:#aeb4aa;stroke-width:1;r:10}
+.journey-stop .stop-dot{fill:#8a9387;r:3}
+.journey-stop.is-active .stop-halo{stroke:var(--red);stroke-width:1.5;r:13}
+.journey-stop.is-active .stop-dot{fill:var(--red);r:4}
+.journey-stop.is-active text,.journey-stop:hover text{fill:var(--red)}
+.journey-stop .stop-hit-area{fill:transparent;stroke:transparent}
 .journey-stop:focus-visible .stop-halo{stroke:var(--red);stroke-width:3}
-.journey-stop text{pointer-events:none}
 .van-wheel{transform-box:fill-box;transform-origin:center;animation:journey-wheel .7s linear infinite;animation-play-state:paused}
 .is-driving .van-wheel{animation-play-state:running}
-.is-driving .van-suspension{animation:journey-bounce .55s ease-in-out infinite alternate}
 @keyframes journey-wheel{to{transform:rotate(360deg)}}
-@keyframes journey-bounce{to{transform:translateY(-1.5px)}}
-.journey-arrival{display:flex;align-items:center;gap:22px;padding:30px;background:#fffef9}
-.journey-arrival-icon{height:64px;width:64px;display:grid;place-items:center;background:#fdf0e8;border-radius:14px;color:var(--red);flex-shrink:0}
-.journey-arrival>div:nth-child(2)>span{font-size:9px;letter-spacing:1.5px;color:#8b977f}
-.journey-arrival h3{font-size:32px;line-height:1.1;margin:7px 0;color:#273d2d;font-family:var(--display)}
-.journey-arrival h3 em{font-style:normal;color:#839477;font-weight:600}
-.journey-arrival p{font-size:12px;color:#8a9682;margin:0}
-.journey-arrival>a{display:flex;align-items:center;gap:24px;padding:16px 20px;border:1px solid #e4e8da;border-radius:5px;font-size:13px;font-weight:600;margin-left:auto;color:#3b5239;transition:background .2s}
-.journey-arrival>a:hover{background:#f1f5e9}.journey-arrival>a svg{color:var(--red)}
-.journey-caption{display:flex;justify-content:space-between;gap:15px;padding:16px 30px;background:#e9eee0;color:#859479;font-size:10px;line-height:1.6}
-.journey-caption>span:first-child{display:flex;align-items:center;gap:9px;color:#718466}
-@media(max-width:800px){.journey-stop text{font-size:22px}.journey-stop .stop-state{font-size:10px}.journey-scene-note{position:static;display:block;padding:0 17px 17px;font-size:10px}}
-@media(min-width:1500px){.journey-heading p{font-size:18px}}
-@media(max-width:900px){.journey-heading{gap:30px}.journey-heading>div:last-child{max-width:310px}.journey-heading p{font-size:14px}.journey-heading h2{font-size:48px}.journey-arrival{padding:24px;gap:15px}.journey-arrival>a{font-size:11px;gap:14px;padding:14px}.journey-arrival h3{font-size:29px}}
-@media(max-width:600px){.journey-heading{display:block;margin-bottom:28px}.journey-heading h2{font-size:45px;margin-top:19px}.journey-heading>div:last-child{max-width:none;margin-top:22px}.journey-heading p{font-size:15px;margin-bottom:14px}.journey-invitation{font-size:12px}.journey-card{border-radius:12px}.journey-toolbar{padding:17px 15px;gap:8px}.journey-toolbar>span{font-size:7px;letter-spacing:.7px;gap:7px;max-width:145px;line-height:1.8}.journey-toolbar button{padding:9px 10px;font-size:10px;gap:5px}.journey-toolbar button svg{width:12px}.journey-scene-note{left:15px;bottom:13px;font-size:9px}.journey-arrival{padding:23px 17px;flex-wrap:wrap;gap:14px}.journey-arrival-icon{width:47px;height:55px;border-radius:9px}.journey-arrival h3{font-size:28px}.journey-arrival>div:nth-child(2)>span{font-size:7px;letter-spacing:1px}.journey-arrival p{font-size:10px}.journey-arrival>a{margin:7px 0 0;width:100%;justify-content:space-between;font-size:12px;padding:14px}.journey-caption{padding:15px 17px;flex-direction:column;gap:6px;font-size:9px}}
-@media(prefers-reduced-motion:reduce){.van-wheel,.is-driving .van-suspension{animation:none}}
+.journey-arrival{display:flex;align-items:center;justify-content:space-between;gap:25px;padding:27px 30px;border-top:1px solid #d9dad2;background:#f7f7f2}
+.journey-arrival>div>span{font-size:10px;letter-spacing:1.3px;color:#8b8f84}
+.journey-arrival h3{font-family:var(--display);font-size:36px;line-height:1.1;margin:7px 0;color:var(--ink)}
+.journey-arrival p{font-size:13px;color:#81877b;margin:0}
+.journey-arrival>a{display:inline-flex;align-items:center;justify-content:space-between;gap:32px;min-height:48px;padding:14px 22px;background:var(--red);color:white;font-size:13px;font-weight:600;transition:background .2s}
+.journey-arrival>a:hover{background:var(--red-dark)}
+@media(max-width:900px){.journey-heading{gap:25px}.journey-heading>div:last-child{max-width:300px}.journey-heading p{font-size:15px}.journey-heading h2{font-size:52px}}
+@media(max-width:800px){.journey-stop text{font-size:22px}.journey-heading{align-items:flex-start;flex-direction:column;gap:24px}.journey-heading>div:last-child{max-width:450px}.journey-toolbar{padding:16px 22px}.journey-arrival{padding:25px 22px}}
+@media(max-width:600px){.journey-heading{margin-bottom:28px;gap:19px}.journey-heading h2{font-size:46px}.journey-heading p{font-size:15px;margin-bottom:10px}.journey-invitation{font-size:12px}.journey-toolbar{padding:13px 17px;gap:10px}.journey-toolbar>span{font-size:10px;gap:6px;line-height:1.6;max-width:180px}.journey-toolbar>span svg{width:13px}.journey-toolbar button{font-size:11px;gap:5px}.journey-toolbar button svg{width:12px}.journey-arrival{padding:23px 17px;align-items:flex-start;flex-direction:column;gap:21px}.journey-arrival h3{font-size:32px}.journey-arrival>div>span{font-size:9px}.journey-arrival p{font-size:12px}.journey-arrival>a{width:100%;font-size:13px}}
+@media(prefers-reduced-motion:reduce){.van-wheel{animation:none}.journey-stop text{transition:none}}
 
+/* Shorter copy, readable supporting text, and clear service actions. */
+.service-body p,.about-copy p,.contact-copy p,.neighbors .google-review-text{font-size:17px;line-height:1.8}
+.service-action{display:flex;align-items:center;justify-content:space-between;gap:14px;border-top:1px solid var(--line);padding-top:18px;margin-top:auto;font-size:15px;font-weight:600;color:var(--red);min-height:48px}
+.service-action:hover{color:var(--red-dark)}
+.section-actions{display:flex;align-items:center;flex-wrap:wrap;gap:20px 26px;margin-top:28px}
+.section-actions .button{font-size:15px;min-height:50px}
+.section-actions .text-link{display:inline-flex;align-items:center;gap:9px;font-size:15px}
+.reviews-actions{justify-content:center;margin-top:30px}
+.section-heading>.text-link{font-size:15px;flex-shrink:0}
+.about-grid{align-items:center}
+.about-visual{height:530px;min-height:0}
+.about-photo-frame{min-height:0;height:100%}
+.about-photo-frame .about-detail{min-height:0}
+.about-copy p{margin-bottom:18px}
+.contact-benefits{display:grid;gap:17px;list-style:none;padding:0;margin:26px 0 32px;font-size:16px;color:#e2e6df}
+.contact-benefits li{display:flex;align-items:center;gap:12px;line-height:1.5}
+.contact-benefits svg{color:#ff765f;flex-shrink:0}
+.contact-form label,.service-selector button{font-size:14px}
+.contact-form input,.contact-form textarea{font-size:16px}
+.form-heading p{font-size:16px}
+.form-footnote,.form-counter{font-size:12px;line-height:1.7}
+.form-counter{color:#74796e}
+.contact-call small,.hero-phone small{font-size:11px;letter-spacing:.5px}
+.eyebrow{font-size:12px;letter-spacing:1px}
+.google-review-author strong{font-size:16px}
+.google-review-author>span,.google-review-footer,.google-reviews-disclosure{font-size:12px;line-height:1.7}
+.google-reviews-toolbar>a{font-size:14px}
+.journey-invitation,.journey-toolbar>span,.journey-toolbar button{font-size:13px}
+.journey-arrival>div>span{font-size:11px;letter-spacing:.6px}
+.journey-arrival p{font-size:14px}
+.journey-arrival>a{font-size:15px}
+.footer-rewired .footer-main>div>a,.footer-rewired .footer-brand p{font-size:14px}
+.footer-rewired .footer-license{font-size:12px}
+.footer-rewired .footer-main h4{font-size:16px}
+.footer-rewired .footer-main .footer-book{display:inline-flex;align-items:center;justify-content:space-between;gap:20px;padding:12px 16px;background:var(--red);color:white;font-size:14px;font-weight:600;margin-top:22px;min-height:46px}
+.footer-rewired .footer-main .footer-book:hover{background:var(--red-dark);transform:none}
+.footer-rewired .hours-card-label,.footer-rewired .hours-label{font-size:11px;letter-spacing:0;line-height:1.6}
+.footer-rewired .footer-hours .hours-note,.footer-rewired .footer-hours>.footer-emergency{font-size:13px}
+.footer-communities>span{font-size:11px;letter-spacing:.2px}
+.footer-communities a{font-size:13px}
+.footer-rewired .footer-bottom,.footer-rewired .footer-bottom>span:nth-child(3){font-size:11px;line-height:1.8}
+@media(max-width:800px){.about-visual{height:auto}.about-photo-frame{height:auto;aspect-ratio:4/5}.section-heading>.text-link{display:inline-flex;margin-top:20px}.journey-heading p{font-size:16px}}
+@media(max-width:520px){.service-body p,.about-copy p,.contact-copy p,.neighbors .google-review-text{font-size:16px;line-height:1.8}.hero-buttons{flex-wrap:wrap;gap:16px 20px}.hero-buttons>.button{font-size:14px}.hero-phone{font-size:16px}.hero .eyebrow,.eyebrow{font-size:11px}.section-actions{gap:18px;margin-top:24px}.section-actions .button{font-size:14px}.section-actions .text-link{font-size:14px}.section-actions:not(.reviews-actions)>.button{width:100%}.contact-form label,.service-selector button{font-size:14px}.service-selector{gap:6px}.service-selector button{padding:10px 7px}.contact-call small{font-size:11px}.google-review-author strong{font-size:16px}.google-review-author>span,.google-review-footer,.google-reviews-disclosure{font-size:12px}.google-review-service{display:none}.google-reviews-toolbar>a{font-size:12px}.journey-invitation,.journey-toolbar>span,.journey-toolbar button{font-size:12px}.journey-toolbar>span{max-width:190px}.journey-arrival>div>span{font-size:11px}.journey-arrival p{font-size:14px}.journey-arrival>a{font-size:14px}.footer-rewired .footer-main{gap:34px 20px}.footer-rewired .footer-main h4{font-size:15px}.footer-rewired .footer-main>div>a,.footer-rewired .footer-brand p{font-size:14px}.footer-rewired .footer-main .footer-book{font-size:13px;padding:10px 12px;gap:10px}.footer-rewired .footer-license{font-size:11px}.footer-rewired .hours-card-label,.footer-rewired .hours-label{font-size:10px;line-height:1.7}.footer-rewired .footer-hours .hours-note,.footer-rewired .footer-hours>.footer-emergency{font-size:12px}.footer-communities>span{font-size:11px}.footer-communities a{font-size:13px}.footer-rewired .footer-bottom{font-size:11px}}
